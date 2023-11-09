@@ -13,6 +13,7 @@ android {
 //get access to classes and functions from below modules
 dependencies {
     implementation(project(Modules.core))
+    implementation(project(Modules.coreUi))
     implementation(project(Modules.trackerDomain))
 
     implementation(Coil.coilCompose)
