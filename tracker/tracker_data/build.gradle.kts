@@ -21,6 +21,6 @@ dependencies {
     implementation(Retrofit.moshiConverter)
 
     "kapt"(Room.roomCompiler)
-    implementation(Room.roomKtx)
+    implementation(Room.roomKtx)  //api - implement only this libraries , implementation - implement also APIs that this libraries implements
     implementation(Room.roomRuntime)
 }

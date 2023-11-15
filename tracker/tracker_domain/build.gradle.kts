@@ -13,4 +13,5 @@ android {
 //get access to classes and functions from below modules
 dependencies {
     implementation(project(Modules.core))
+    implementation(Coroutines.coroutines)
 }
