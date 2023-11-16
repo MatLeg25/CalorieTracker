@@ -17,5 +17,5 @@ interface TrackerRepository {
 
     suspend fun deleteTrackedFood(food: TrackedFood)
 
-    suspend fun getFoodsForDate(localDate: LocalDate): Flow<List<TrackedFood>>
+    fun getFoodsForDate(localDate: LocalDate): Flow<List<TrackedFood>>
 }

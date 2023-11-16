@@ -3,7 +3,7 @@ package com.example.core.domain.model
 sealed class ActivityLevel(val name: String) {
     object Low: ActivityLevel("low")
     object Medium: ActivityLevel("medium")
-    object Height: ActivityLevel("height")
+    object High: ActivityLevel("height")
 
     companion object {
         const val default = "medium"
@@ -11,7 +11,7 @@ sealed class ActivityLevel(val name: String) {
             return when (name) {
                 "low" -> Low
                 "medium" -> Medium
-                "height" -> Height
+                "height" -> High
                 else -> Medium
             }
         }
