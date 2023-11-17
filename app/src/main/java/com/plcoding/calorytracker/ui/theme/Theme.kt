@@ -1,5 +1,12 @@
 package com.plcoding.calorytracker.ui.theme
 
+import BrightGreen
+import DarkGray
+import DarkGreen
+import LightGray
+import MediumGray
+import Orange
+import TextWhite
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors

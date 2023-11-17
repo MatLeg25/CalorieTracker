@@ -6,16 +6,15 @@ import com.example.core.domain.model.GoalType
 import com.example.core.domain.model.UserInfo
 import com.example.tracker_domain.model.MealType
 import com.example.core.domain.preferences.Preferences
+import com.example.tracker_domain.config.Nutrients.KCAL_IN_1G_CARBS
+import com.example.tracker_domain.config.Nutrients.KCAL_IN_1G_FAT
+import com.example.tracker_domain.config.Nutrients.KCAL_IN_1G_PROTEIN
 import com.example.tracker_domain.model.TrackedFood
 import kotlin.math.roundToInt
 
 class CalculateMealNutrients(
     private val preferences: Preferences
 ) {
-
-    private val KCAL_IN_1G_CARBS = 4f
-    private val KCAL_IN_1G_PROTEIN = 4f
-    private val KCAL_IN_1G_FAT = 9f
 
     operator fun invoke(trackedFoods: List<TrackedFood>): Result {
         val allNutrients = trackedFoods

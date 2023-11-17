@@ -1,5 +1,3 @@
-package com.plcoding.calorytracker.ui.theme
-
 import androidx.compose.ui.graphics.Color
 
 val BrightGreen = Color(0xFF00C713)
