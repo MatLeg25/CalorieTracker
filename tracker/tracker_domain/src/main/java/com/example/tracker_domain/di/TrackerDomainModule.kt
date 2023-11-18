@@ -5,6 +5,7 @@ import com.example.tracker_domain.repository.TrackerRepository
 import com.example.tracker_domain.use_case.CalculateMealNutrients
 import com.example.tracker_domain.use_case.DeleteTrackedFood
 import com.example.tracker_domain.use_case.GetFoodsForDate
+import com.example.tracker_domain.use_case.SearchFood
 import com.example.tracker_domain.use_case.TrackFood
 import com.example.tracker_domain.use_case.TrackerUseCases
 import dagger.Module
@@ -25,7 +26,7 @@ object TrackerDomainModule {
     ): TrackerUseCases {
         return TrackerUseCases(
             trackFood = TrackFood(repository),
-            searchFood = TrackFood(repository),
+            searchFood = SearchFood(repository),
             getFoodsForDate = GetFoodsForDate(repository),
             deleteTrackedFood = DeleteTrackedFood(repository),
             calculateMealNutrients = CalculateMealNutrients(preferences)
