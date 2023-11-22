@@ -5,6 +5,7 @@ import com.example.tracker_data.mapper.toTrackableFood
 import com.example.tracker_data.mapper.toTrackedFood
 import com.example.tracker_data.mapper.toTrackedFoodEntity
 import com.example.tracker_data.remote.OpenFoodApi
+import com.example.tracker_domain.config.Nutrients
 import com.example.tracker_domain.model.TrackableFood
 import com.example.tracker_domain.model.TrackedFood
 import com.example.tracker_domain.repository.TrackerRepository
@@ -17,6 +18,10 @@ class TrackerRepositoryImpl(
     private val api: OpenFoodApi
 ): TrackerRepository {
 
+    /**
+     * The API has inconsistent data in term of factors for energy amount for carbs, fat, protein
+     * We filter to use only values that are inline +-1% with our predefined factors
+     */
     override suspend fun searchFood(
         query: String,
         page: Int,
@@ -29,7 +34,17 @@ class TrackerRepositoryImpl(
                 pageSize = pageSize
             )
             Result.success(
-                searchDto.products.mapNotNull { it.toTrackableFood() }
+                searchDto.products
+                    .filter {
+                        val calculatedCalories =
+                            it.nutriments.carbohydrates100g * Nutrients.KCAL_IN_1G_CARBS+
+                                    it.nutriments.proteins100g * Nutrients.KCAL_IN_1G_PROTEIN +
+                                    it.nutriments.fat100g * Nutrients.KCAL_IN_1G_FAT
+                        val lowerBound = calculatedCalories * 0.99f
+                        val upperBound = calculatedCalories * 1.01f
+                        it.nutriments.energyKcal100g in (lowerBound..upperBound)
+                    }
+                    .mapNotNull { it.toTrackableFood() }
             )
         } catch(e: Exception) {
             e.printStackTrace()
