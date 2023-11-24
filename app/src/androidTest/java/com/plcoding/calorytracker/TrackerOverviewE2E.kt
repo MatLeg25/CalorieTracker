@@ -1,6 +1,7 @@
 package com.plcoding.calorytracker
 
 import android.annotation.SuppressLint
+import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
@@ -108,10 +109,10 @@ class TrackerOverviewE2E {
            filterOutDigits = FilterOutDigits()
        )
 
-       composeRule.setContent {
+       composeRule.activity.setContent {
            CaloryTrackerTheme {
                val scaffoldState = rememberScaffoldState()
-               val navController = rememberNavController()
+               navController = rememberNavController()
                Scaffold(
                    modifier = Modifier.fillMaxSize(),
                    scaffoldState = scaffoldState
